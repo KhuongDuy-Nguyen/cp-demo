@@ -1,5 +1,6 @@
 package com.example.demo.domains.classes;
 
+import com.example.demo.domains.teachers.TeacherEntity;
 import lombok.*;
 import lombok.experimental.Accessors;
 
