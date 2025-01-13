@@ -1,12 +1,12 @@
 package com.example.demo.domains.students;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -29,5 +29,4 @@ public class StudentEntity {
     private LocalDate dateOfBirth;
 
     private Long classId;
-
 }

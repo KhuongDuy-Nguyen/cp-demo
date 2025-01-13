@@ -1,7 +1,5 @@
 package com.example.demo.domains.teachers;
 
-import com.example.demo.domains.classes.ClassEntity;
-import com.example.demo.domains.classes.dtos.ClassResponse;
 import com.example.demo.domains.teachers.dtos.TeacherResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

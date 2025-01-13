@@ -1,11 +1,12 @@
 package com.example.demo.domains.subjects;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
