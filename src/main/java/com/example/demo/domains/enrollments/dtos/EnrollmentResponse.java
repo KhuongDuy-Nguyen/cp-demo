@@ -5,6 +5,7 @@ import com.example.demo.domains.subjects.dtos.SubjectResponse;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -14,4 +15,5 @@ public class EnrollmentResponse {
     private SubjectResponse subject;
     private List<StudentResponse> students;
     private int totalStudents;
+    private LocalDate enrollmentDate;
 }

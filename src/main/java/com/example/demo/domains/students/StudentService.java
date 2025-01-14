@@ -34,8 +34,10 @@ public class StudentService {
                 .innerJoin(qClass).on(qClass.classId.eq(qStudent.classId))
                 .transform(GroupBy.groupBy(qStudent).as(qClass));
 
-        StudentEntity studentEntity = subjectByStudent.keySet().stream().toList().get(0);
-        response.setFromClass(classMapper.toResponse(subjectByStudent.get(studentEntity), classService));
+        if (!subjectByStudent.isEmpty()) {
+            StudentEntity studentEntity = subjectByStudent.keySet().stream().toList().get(0);
+            response.setFromClass(classMapper.toResponse(subjectByStudent.get(studentEntity), classService));
+        }
     }
 
     public void toListResponse(List<Long> studentIds, List<StudentResponse> responses) {

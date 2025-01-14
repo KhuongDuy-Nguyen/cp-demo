@@ -44,15 +44,18 @@ public class EnrollmentService {
                 .select("stu", "student")
                 .select("sub", "subject")
                 .selectSubquery("studentCount")
-                .from(EnrollmentEntity.class, "subEnr")
-                .select("COUNT(subEnr.studentId)")
-                .where("subEnr.subjectId").eqExpression("sub.subjectId")
-                .end();
+                    .from(EnrollmentEntity.class, "subEnr")
+                    .select("COUNT(subEnr.studentId)")
+                    .where("subEnr.subjectId").eqExpression("sub.subjectId")
+                .end()
+                .groupBy("enr.enrollmentId", "stu.studentId", "sub.subjectId");
+
+        List<Tuple> tuples = request.toQuery(tupleCriteriaBuilder).getResultList();
 
         Map<Long, List<StudentResponse>> studentOfSubject = new HashMap<>();
         List<EnrollmentResponse> responses = new ArrayList<>();
 
-        for (Tuple tuple : tupleCriteriaBuilder.getResultList()) {
+        for (Tuple tuple : tuples) {
             EnrollmentEntity enrollmentEntity = tuple.get("enrollment", EnrollmentEntity.class);
             StudentEntity studentEntity = tuple.get("student", StudentEntity.class);
             SubjectEntity subjectEntity = tuple.get("subject", SubjectEntity.class);
@@ -60,7 +63,8 @@ public class EnrollmentService {
             Long totalStudents = tuple.get(3, Long.class);
             EnrollmentResponse response = enrollmentMapper.toResponse(enrollmentEntity);
 
-            studentOfSubject.computeIfAbsent(subjectEntity.getSubjectId(), k -> new ArrayList<>()).add(studentMapper.toResponse(studentEntity, studentService));
+            studentOfSubject.computeIfAbsent(subjectEntity.getSubjectId(), k -> new ArrayList<>())
+                    .add(studentMapper.toResponse(studentEntity, studentService));
             response.setSubject(subjectMapper.toResponse(subjectEntity));
             response.setTotalStudents(totalStudents.intValue());
             responses.add(response);

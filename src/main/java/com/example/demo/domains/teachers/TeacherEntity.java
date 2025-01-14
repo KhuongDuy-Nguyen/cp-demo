@@ -28,4 +28,6 @@ public class TeacherEntity {
     private String email;
 
     private LocalDate hireDate;
+
+    private int age;
 }

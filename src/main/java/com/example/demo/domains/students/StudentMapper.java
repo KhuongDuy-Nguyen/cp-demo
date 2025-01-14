@@ -1,15 +1,13 @@
 package com.example.demo.domains.students;
 
 import com.example.demo.domains.students.dtos.StudentResponse;
-import org.mapstruct.AfterMapping;
-import org.mapstruct.Context;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface StudentMapper {
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     StudentResponse toResponse(StudentEntity studentEntity, @Context StudentService studentService);
 
     List<StudentResponse> toListResponse(List<StudentEntity> studentEntities, @Context StudentService studentService);

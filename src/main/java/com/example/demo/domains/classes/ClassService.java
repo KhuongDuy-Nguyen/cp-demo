@@ -66,10 +66,10 @@ public class ClassService {
     }
 
     public Page<ClassResponse> get(ClassRequest request, Pageable pageable) {
-        var query = criteriaBuilderFactory.create(entityManager, ClassEntity.class, "cls");
+        var classQuery = criteriaBuilderFactory.create(entityManager, ClassEntity.class, "cls");
         var teacherQuery = criteriaBuilderFactory.create(entityManager, TeacherEntity.class, "tch");
 
-        PagedList<ClassEntity> classes = request.toPredicate(query)
+        PagedList<ClassEntity> classes = request.toPredicate(classQuery)
                 .orderByAsc("cls.classId")
                 .page(pageable.getPageNumber(), pageable.getPageSize())
                 .getResultList();
