@@ -5,6 +5,7 @@ package com.example.demo.domains.subjects;
 
 import com.example.demo.domains.subjects.dtos.TeacherOfSubjectResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +25,7 @@ public class SubjectController {
   // Get teacher of subject
 
   @GetMapping("/teacher")
-  public Page<TeacherOfSubjectResponse> getTeacherOfSubject(Pageable pageable) throws JsonProcessingException {
+  public List<TeacherOfSubjectResponse> getTeacherOfSubject(Pageable pageable) throws JsonProcessingException {
     return subjectService.getTeacherOfSubject(pageable);
   }
 }

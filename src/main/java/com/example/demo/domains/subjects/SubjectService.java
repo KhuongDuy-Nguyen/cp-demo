@@ -42,15 +42,14 @@ public class SubjectService {
   @PersistenceContext
   private EntityManager entityManager;
 
-  public Page<TeacherOfSubjectResponse> getTeacherOfSubject(Pageable pageable) throws JsonProcessingException {
+  public List<TeacherOfSubjectResponse> getTeacherOfSubject(Pageable pageable) throws JsonProcessingException {
     ObjectMapper objectMapper = new ObjectMapper();
-    PaginatedCriteriaBuilder<Tuple> query = cbf.create(entityManager, Tuple.class)
+    CriteriaBuilder<Tuple> query = cbf.create(entityManager, Tuple.class)
         .from(SubjectEntity.class, "s")
         .select("s.teacherId", "teacherId")
         .select("JSON_ARRAYAGG(s.subjectId)", "subjectIds")
         .groupBy("s.teacherId")
-        .orderByAsc("s.teacherId")
-        .page(pageable.getPageNumber(), pageable.getPageSize());
+        .orderByAsc("s.teacherId");
 
     Map<Long, List<Long>> teacherSubjectMap = new HashMap<>();
     for (Tuple tuple : query.getResultList()) {
@@ -75,6 +74,6 @@ public class SubjectService {
       List<SubjectResponse> subjectResponses = subjects.stream().map(subjectMapper::toResponse).toList();
       responses.add(new TeacherOfSubjectResponse(teacherResponse, subjectResponses));
     });
-    return new PageImpl<>(responses, pageable, responses.size());
+    return responses;
   }
 }
