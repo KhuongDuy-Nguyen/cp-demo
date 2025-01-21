@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/class")
 public class ClassController {
-    private final ClassService classService;
 
-    @GetMapping()
-    public Page<ClassResponse> search(ClassRequest request, Pageable pageable) {
-        return classService.get(request, pageable);
-    }
+  private final ClassService classService;
+
+  @GetMapping()
+  public Page<ClassResponse> search(ClassRequest request, Pageable pageable) {
+    return classService.get(request, pageable);
+  }
 
 }

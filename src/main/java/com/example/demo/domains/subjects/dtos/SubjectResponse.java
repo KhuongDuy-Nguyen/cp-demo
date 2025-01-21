@@ -7,7 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SubjectResponse {
-    private Long subjectId;
-    private String subjectName;
-    private TeacherResponse teacher;
+
+  private Long subjectId;
+  private String subjectName;
+  private TeacherResponse teacher;
 }

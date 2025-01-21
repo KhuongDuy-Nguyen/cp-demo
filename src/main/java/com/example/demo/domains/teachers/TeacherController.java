@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/teacher")
 @RequiredArgsConstructor
 public class TeacherController {
-    private final TeacherService teacherService;
 
-    @GetMapping()
-    public Page<TeacherResponse> search(TeacherRequest request, Pageable pageable) {
-        return teacherService.get(request, pageable);
-    }
+  private final TeacherService teacherService;
+
+  @GetMapping()
+  public Page<TeacherResponse> search(TeacherRequest request, Pageable pageable) {
+    return teacherService.get(request, pageable);
+  }
 }

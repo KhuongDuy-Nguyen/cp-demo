@@ -1,9 +1,18 @@
 package com.example.demo.domains.classes;
 
-import lombok.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
-
-import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,11 +24,12 @@ import javax.persistence.*;
 @ToString
 @Table(name = "class", schema = "public")
 public class ClassEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long classId;
 
-    private String className;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long classId;
 
-    private Long teacherId;
+  private String className;
+
+  private Long teacherId;
 }
